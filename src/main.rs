@@ -1,4 +1,8 @@
+mod winmgr;
+
+use winmgr::WindowManager;
 
 pub fn main() {
-    println!("Allo toi...................")
+    let mut wm = WindowManager::new();
+    wm.init();
 }

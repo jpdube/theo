@@ -1,7 +1,7 @@
 use ncurses::*;
 
 #[derive(Default)]
-struct WindowManager {
+pub struct WindowManager {
     header: String,
     body: String,
     footer: String,
@@ -27,8 +27,8 @@ impl WindowManager {
         curs_set(CURSOR_VISIBILITY::CURSOR_INVISIBLE);
 
         /* Status/help info. */
-        addstr(&format!("Use the arrow keys to move, screen size: Lines:{}, Cols:{}", LINES(), COLS()));
-        mvprintw(LINES() - 1, (COLS() / 2) - 8, "Press F1 to exit");
+        addstr(&format!("First attempt at Theo TUI: Lines:{}, Cols:{}", LINES(), COLS()));
+        mvprintw(LINES() - 1, (COLS() / 2) - 8, "Press any key to exit");
         refresh();
 
         let ch = getch();
@@ -43,9 +43,7 @@ mod tests {
     #[test]
     fn test_new() {
         let mut wm = WindowManager::new();
-        wm.header = "Pcap db".to_owned();
-
-        assert!(wm.header == "Pcap db".to_owned());
-        wm.init();
+        wm.header = "Header".to_owned();
+        assert!(wm.header == "Header".to_owned());
     }
 }
